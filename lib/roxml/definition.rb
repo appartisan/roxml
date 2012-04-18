@@ -150,7 +150,11 @@ module ROXML
       end,
       Float    => lambda do |val|
         all(val) do |v|
-          Float(v) unless v.blank?
+          begin
+            Float(v) unless v.blank?
+          rescue
+            v
+          end
         end
       end,
       Fixnum   => lambda do |val|
